@@ -55,7 +55,22 @@ body main .form form textarea {
     max-height: 100px;
     min-height: 100px;
     background: none;
+    border: none;
+    border: 2px solid #404040;
+    padding: 10px;
 }
+
+body main .form form button {
+    background-color: #2EBAED;
+    border: none;
+    height: 30px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all ease-in-out .3s;
+}
+
+body main .form form button:hover { background-color: #259bc7; }
 
 body main .tasks {
     grid-area: tasks;
