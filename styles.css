@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-image: url(./imgs/background.webp);
+    width: 90%;
+    max-width: 1080px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "header  header"
+                         "main    main"
+                         "footer  footer";
+    row-gap: 20px;
+}
+
+body header {
+    grid-area: header;
+    text-align: center;
+}
+
+body main {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-areas: "subtitle  subtitle"
+    "form      tasks";
+}
+
+body main .subtitle { grid-area: subtitle; }
+
+body main .form {
+    grid-area: form;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+body main .form form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+body main .form form textarea {
+    max-width: 450px;
+    min-width: 450px;
+    max-height: 100px;
+    min-height: 100px;
+    background: none;
+}
+
+body main .tasks {
+    grid-area: tasks;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+body main .tasks h2 { display: inline-block; }
