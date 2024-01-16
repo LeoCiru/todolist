@@ -31,6 +31,7 @@ function createHTML(tweet) {
     }
 
     tweets = [...tweets, tweetObj]
+    clearHTML();
 
     if (tweets.length > 0) {
         tweets.forEach(tweet => {
@@ -40,5 +41,11 @@ function createHTML(tweet) {
             element.innerText = tweet.tweet;
             tasksList.appendChild(element);
         })
+    }
+}
+
+function clearHTML() {
+    while (tasksList.firstChild) {
+        tasksList.removeChild(tasksList.firstChild)
     }
 }
