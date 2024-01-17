@@ -1,7 +1,8 @@
 // Variables
 const messageBox = document.getElementById('messageBox'),
     sendBtn = document.getElementById('sendBtn'),
-    tasksList = document.querySelector('.tasksList');
+    tasksList = document.querySelector('.tasksList'),
+    errorContainer = document.querySelector('.errorContainer');
 let tweets = [];
 
 
@@ -17,6 +18,7 @@ function addTweet(e) {
 
     if (messageBox.value == '') {
         console.log('BOBOP');
+        createError('Por favor, escribe algo.');
         return;
     }
 
@@ -42,10 +44,33 @@ function createHTML(tweet) {
             tasksList.appendChild(element);
         })
     }
+
+    messageBox.value = '';
 }
 
 function clearHTML() {
     while (tasksList.firstChild) {
         tasksList.removeChild(tasksList.firstChild)
+    }
+}
+
+function createError(message) {
+    const error = document.createElement('P');
+
+    clearError();
+
+    error.innerText = message;
+    error.classList.add('error');
+
+    errorContainer.appendChild(error);
+
+    setTimeout(() => {
+        errorContainer.removeChild(error);
+    }, 2000);
+}
+
+function clearError() {
+    while (errorContainer.firstChild) {
+        errorContainer.removeChild(errorContainer.firstChild)
     }
 }

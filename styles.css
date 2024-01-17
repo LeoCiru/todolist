@@ -72,6 +72,16 @@ body main .form form button {
 
 body main .form form button:hover { background-color: #259bc7; }
 
+.error {
+    color: #fff;
+    padding: 10px;
+    margin-top: 7px;
+    background-color: #ed2e2e;
+    text-align: center;
+    width: 450px;
+    border-radius: 5px;
+}
+
 body main .tasks {
     grid-area: tasks;
     display: flex;
