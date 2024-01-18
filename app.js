@@ -1,18 +1,23 @@
-// Variables
+// VARIABLES
 const messageBox = document.getElementById('messageBox'),
     sendBtn = document.getElementById('sendBtn'),
     tasksList = document.querySelector('.tasksList'),
-    errorContainer = document.querySelector('.errorContainer');
+    form = document.querySelector('.form'),
+    errorContainer = document.createElement('DIV');
 let tweets = [];
 
 
 loadEvents();
 
+
+// EVENT LISTENERS
 function loadEvents() {
     sendBtn.addEventListener('click', addTweet);
 }
 
 
+
+// FUNCTIONS
 function addTweet(e) {
     e.preventDefault();
 
@@ -59,6 +64,9 @@ function createError(message) {
 
     clearError();
 
+    errorContainer.classList.add('errorContainer');
+
+    form.appendChild(errorContainer)
     error.innerText = message;
     error.classList.add('error');
 
@@ -66,7 +74,7 @@ function createError(message) {
 
     setTimeout(() => {
         errorContainer.removeChild(error);
-    }, 2000);
+    }, 50000);
 }
 
 function clearError() {
