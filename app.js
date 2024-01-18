@@ -74,7 +74,7 @@ function createError(message) {
 
     setTimeout(() => {
         errorContainer.removeChild(error);
-    }, 50000);
+    }, 2000);
 }
 
 function clearError() {
