@@ -23,6 +23,11 @@ function loadEvents() {
             addTask(event);
         }
     });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        createHTML();
+    })
 }
 
 
@@ -32,7 +37,6 @@ function addTask(e) {
     e.preventDefault();
 
     if (messageBox.value == '') {
-        console.log('BOBOP');
         createError('Por favor, escribe algo.');
         return;
     }
@@ -43,21 +47,20 @@ function addTask(e) {
 
 
 function createHTML() {
-
-    const taskValue = messageBox.value;
-
+    const taskValue = messageBox.value.trim();
     const taskObj = {
         id: Date.now(),
         task: taskValue
     }
 
+    //Filling the array with objects that contain information from the textarea
     tasks = [...tasks, taskObj]
 
     clearHTML();
 
+    //If there is at least one element in the array, this creates the appropiate HTML tag to the list with the content
     if (tasks.length > 0) {
         tasks.forEach(task => {
-            console.log(tasks)
             const element = document.createElement('LI'),
                 deleteBtn = document.createElement('A');
 
@@ -71,6 +74,7 @@ function createHTML() {
             element.appendChild(deleteBtn);
             tasksList.appendChild(element);
 
+            //When you click the delete button, if the tag doesn't have any message, it's deleted
             if (task.task === '') {
                 deleteBtn.parentElement.remove();
             }
@@ -79,15 +83,19 @@ function createHTML() {
 
     messageBox.value = '';
     messageBox.focus();
+
+    syncLocalStorage();
 }
 
 
 
 function clearHTML() {
     while (tasksList.firstChild) {
-        tasksList.removeChild(tasksList.firstChild)
+        tasksList.removeChild(tasksList.firstChild);
     }
 }
+
+
 
 function createError(message) {
     const error = document.createElement('P');
@@ -111,7 +119,7 @@ function createError(message) {
 
 function clearError() {
     while (errorContainer.firstChild) {
-        errorContainer.removeChild(errorContainer.firstChild)
+        errorContainer.removeChild(errorContainer.firstChild);
     }
 }
 
@@ -119,7 +127,9 @@ function clearError() {
 
 function deleteTask(id) {
     tasks = tasks.filter(task => task.id !== id);
-    console.log(tasks);
+    createHTML();
+}
 
-    createHTML()
+function syncLocalStorage() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
